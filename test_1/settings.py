@@ -14,6 +14,7 @@ import cloudinary_storage
 import os
 from pathlib import Path
 import environ
+from decouple import config
 
 
 
@@ -27,10 +28,10 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env.str('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool('DEBUG',default=False)
+DEBUG = config('DEBUG',default=False)
 
 ALLOWED_HOSTS = ['nearlz-portfolio.herokuapp.com','localhost','127.0.0.1']
 
@@ -52,9 +53,9 @@ INSTALLED_APPS = [
 ]
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': env.str('CLOUD_NAME'),
-    'API_KEY': env.str('API_KEY'),
-    'API_SECRET': env.str('API_SECRET'),
+    'CLOUD_NAME': config('CLOUD_NAME'),
+    'API_KEY': config('API_KEY'),
+    'API_SECRET': config('API_SECRET'),
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
@@ -106,12 +107,12 @@ WSGI_APPLICATION = 'test_1.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': env.str('ENGINE'),
-        'NAME': env.str('NAME'),
-        'USER': env.str('USER'),
-        'PASSWORD': env.str('PASSWORD'),
-        'HOST': env.str('HOST'),
-        'PORT': env.str('PORT')
+        'ENGINE': config('ENGINE'),
+        'NAME': config('NAME'),
+        'USER': config('USER'),
+        'PASSWORD': config('PASSWORD'),
+        'HOST': config('HOST'),
+        'PORT': config('PORT')
     }
 }
 
